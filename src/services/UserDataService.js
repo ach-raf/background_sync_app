@@ -1,16 +1,22 @@
 import axios from 'axios'
+//import API_URL from '../utils'
+const SERVER_PORT = 6060
+const API_URL = 'http://localhost:' + SERVER_PORT + '/api/'
 
-const API_URL = 'http://localhost:8080/api'
-
-class UserDataService {
-    //return axios.get(`${API_URL}/users`, { crossdomain: true });
-    retrieveAllUsers() {
-        return axios.get(`${API_URL}/users`);
-    }
-    retrieveUser(id) {
-        return axios.get(`${API_URL}/users/` + id);
-    }
+const getUsers = async () => {
+    const url = API_URL + 'users';
+    let response = await axios.get(url);
+    let data  = response.data;
+    return data
+}
+const getUser = async (id) => {
+    const url = API_URL + 'user/' + id;
+    let { data } =  await axios.get(url)
+    return data
 }
 
-export default new UserDataService();
+export default {
+    getUsers: getUsers,
+    getUser: getUser
+}
 

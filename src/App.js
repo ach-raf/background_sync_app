@@ -1,17 +1,24 @@
-import UserApp from './components/UserApp';
-import logo from './logo.svg';
+import React, {useState } from 'react';
 import './App.css';
-import React, { Component } from 'react';
+import ListUsersComponent from './components/ListUsersComponent';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="container">
-        <UserApp />
+
+const App = () => {
+    
+  return (
+    <div className="container">
+    <h1>Background sync</h1>
+    <div className="flex-row">
+      <div className="flex-large">
+        <h2>Edit user</h2>
       </div>
-        
-    );
-  }
+      <div className="flex-large">
+      <ListUsersComponent />
+      </div>
+    </div>
+  </div>
+      
+  )
 }
 
-export default App;
+export default App

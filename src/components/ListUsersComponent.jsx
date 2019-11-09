@@ -1,61 +1,50 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect  } from 'react';
 import UserDataService from '../services/UserDataService';
-class ListUsersComponent extends Component {
+import UserTable from '../tables/UserTable';
+//<UserTable users={users}/>
+function ListUsersComponent () {
+    const [data, setData] = useState(false);
+    const [editing, setEditing] = useState(false);
+    const initialFormState = { id: '', name: '', email: '', avatar: '' };
+    const [currentUser, setCurrentUser] = useState(false);
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            users: [],
-            message: null
+    const editRow = user => {
+        console.log('user', user);
+        setEditing(true)
+        setCurrentUser({ id: user.id, name: user.name, email: user.email, avatar: user.avatar })
+        console.log('current user', currentUser);
+      }
+
+
+      useEffect(() => {
+        async function fetchData() {
+          // You can await here
+          const response = await UserDataService.getUsers();
+          console.log('response', response);
+          setData(response)
+          // ...
         }
-        this.refreshUsers = this.refreshUsers.bind(this)
-    }
-
-    componentDidMount() {
-        this.refreshUsers();
-    }
-
-    refreshUsers() {
-        UserDataService.retrieveAllUsers()
-            .then(
-                response => {
-                    this.setState({users: response.data})
-                }
-            )
-    }
-    render() {
-        return (
-            <div className="container">
-                <h3>All Users</h3>
-                <div className="container">
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Avatar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.users.map(
-                                    user =>
-                                        <tr key={user.id}>
-                                            <td>{user.id}</td>
-                                            <td>{user.name}</td>
-                                            <td>{user.email}</td>
-                                            <td><img src={require(`../ressources/${user.avatar}`)}alt="" style={{height: 80}}></img></td>
-                                        </tr>
-                    
-                                    )
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        )
-    }
-}
-
-export default ListUsersComponent;
+        fetchData();
+      }, []); // Or [] if effect doesn't need props or state
+      
+      
+  
+    
+  
+    return (
+      <div className="container">
+        <h1>CRUD App with Hooks</h1>
+        <div className="flex-row">
+          <div className="flex-large">
+            <h2>Add user</h2>
+          </div>
+          <div className="flex-large">
+            <h2>View users</h2>
+            <UserTable users = {data} editRow={editRow}/>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  
+  export default ListUsersComponent
