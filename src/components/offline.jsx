@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import UserTable from './tables/UserTable';
 
-const App = () => {
-  const usersData = [
-    { id: 1, name: 'Tania', username: 'floppydiskette' },
-    { id: 2, name: 'Craig', username: 'siliconeidolon' },
-    { id: 3, name: 'Ben', username: 'benisphere' },
-  ]
-
+const Offline = () => {
   const [users, setUsers] = useState(usersData)
+  this.state = {
+      apple:JSON.parse(localStorage.getItem('users'))
+    } 
+ 
 
   return (
     <div className="container">
@@ -26,4 +24,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Offline

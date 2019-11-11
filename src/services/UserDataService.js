@@ -14,9 +14,16 @@ const getUser = async (id) => {
     let { data } =  await axios.get(url)
     return data
 }
+function updateUser(user){
+    const url = API_URL + 'user/' + user.id
+    console.log(url)
+    axios.put(url, user);
+
+}
 
 export default {
     getUsers: getUsers,
-    getUser: getUser
+    getUser: getUser,
+    updateUser:updateUser
 }
 
