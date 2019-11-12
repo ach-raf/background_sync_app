@@ -21,7 +21,7 @@ Clone the project.
 
 Navigate to project directory.
 
-### `cd background_sync_rest`
+### `cd background_sync_app`
 
 In the project directory, run:
 
