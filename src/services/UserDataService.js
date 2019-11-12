@@ -1,29 +1,39 @@
 import axios from 'axios'
-//import API_URL from '../utils'
+
 const SERVER_PORT = 6060
 const API_URL = 'http://localhost:' + SERVER_PORT + '/api/'
 
+//config for axios
+var config = {
+    headers: {
+        //allow cross origin calls between server and client.
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+    }
+};
+
+// methode to get all users from the server
 const getUsers = async () => {
     const url = API_URL + 'users';
-    let response = await axios.get(url);
-    let data  = response.data;
-    return data
+    var data = [];
+    axios.get(url, config)
+        .then((response) => {
+            data = response.data;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    return data;
 }
-const getUser = async (id) => {
-    const url = API_URL + 'user/' + id;
-    let { data } =  await axios.get(url)
-    return data
-}
-function updateUser(user){
-    const url = API_URL + 'user/' + user.id
-    console.log(url)
-    axios.put(url, user);
 
+//update the user with a put request to the api
+function updateUser(user) {
+    const url = API_URL + 'user/' + user.id
+    axios.put(url, user);
 }
 
 export default {
     getUsers: getUsers,
-    getUser: getUser,
-    updateUser:updateUser
+    updateUser: updateUser
 }
 
