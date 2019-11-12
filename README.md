@@ -3,9 +3,9 @@
 
 ## For the backend server please go to:
 
-Run the server at least once to get the initial data.
-
 ### `https://github.com/ach-raf/back_sync_server`
+
+Run the server at least once to get the initial data.
 
 ## What would you need to install:
 
