@@ -17,7 +17,7 @@ Install Git.
 
 Clone the project.
 
-### `git pull git@github.com:ach-raf/background_sync_rest.git`
+### `git pull git@github.com:ach-raf/background_sync_app.git`
 
 Navigate to project directory.
 
