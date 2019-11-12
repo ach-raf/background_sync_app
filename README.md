@@ -1,18 +1,17 @@
+## This project uses LocalStorage to show data and make edits even in offline mode and sync the data once there is a connection.
+
+
 ## For the backend server please go to:
 
-### ``
+Run the server at least once to get the initial data.
+
+### `https://github.com/ach-raf/back_sync_server`
 
 ## What would you need to install:
 
-Java version 8 or above.
-
-Eclipse or IntelliJ IDEA with Spring Boot STC installed.
-
-Install Lombok.
-
-Install MongoDB.
-
 Install NodeJs.
+
+Install Git.
 
 ## How to use:
 
@@ -34,9 +33,5 @@ When all the dependencies finish installing.
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
